@@ -1,0 +1,90 @@
+﻿body {
+    padding-top: 20px;
+}
+
+table {
+    page-break-inside: auto
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto
+}
+
+thead {
+    display: table-header-group
+}
+
+tfoot {
+    display: table-footer-group
+}
+
+
+.report-header {
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+/* report header */
+.report-logo {
+    float: left;
+}
+
+.report-name {
+    font-size: 30px;
+    float: right;
+}
+
+
+/* report tool informations */
+.report-tool-informations {
+    position: relative;
+}
+
+    .report-tool-informations .report-tool-informations-left {
+        width: 75%;
+        float: left;
+    }
+
+        .report-tool-informations .report-tool-informations-left .report-tool-info {
+            font-weight: bold;
+        }
+
+        .report-tool-informations .report-tool-informations-left .report-tool-name {
+            font-size: xx-large;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    .report-tool-informations .report-tool-informations-right {
+        width: 25%;
+        float: right;
+        text-align: center;
+        padding-top: 15px;
+    }
+
+        .report-tool-informations .report-tool-informations-right .report-tool-image {
+            border: thin solid gray;
+            min-width: 150px;
+            min-height: 150px;
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+.report-family-schema-image {
+}
+
+.report-tool-parameters {
+}
+
+    .report-tool-parameters .report-parameter-table-name {
+        background: lightgray;
+        font-weight: bold;
+        font-size: x-large;
+    }
+
+    .report-tool-parameters .report-parameter-table-header {
+        font-weight: bold;
+        font-size: larger;
+    }
