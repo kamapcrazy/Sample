@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Sample.PDF.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Sample.PDF
 {
@@ -20,7 +23,17 @@ namespace Sample.PDF
         {
             services.AddSingleton<IPdfService, PdfService>();
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                options.SerializerSettings.Converters.Add(new StringEnumConverter { CamelCaseText = true });
+            }); ;
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Sample PDF V1", Version = "v1" });
+                c.CustomSchemaIds(x => x.FullName);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +47,12 @@ namespace Sample.PDF
             app.UseStaticFiles();
 
             app.UseMvc();
+
+            app.UseSwagger();
+
+            var swaggerEndpointUrl = $"/swagger/v1/swagger.json";
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint(swaggerEndpointUrl, "Sample PDF V1"); });
         }
     }
 }
